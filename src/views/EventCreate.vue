@@ -32,7 +32,6 @@
       </div>
       <input type="submit" class="button -fill-gradient" value="Submit" />
     </form>
-    <h1>Create Event, {{ userName }}</h1>
   </div>
 </template>
 
@@ -65,7 +64,7 @@ export default {
   },
   methods: {
     createFreshEvent() {
-      const user = this.$store.state.user
+      const user = this.$store.state.user.user
       const id = Math.floor(Math.random() * 10000000)
       return {
         id,
@@ -81,7 +80,7 @@ export default {
     },
     createEvent() {
       this.$store
-        .dispatch('createEvent', this.event)
+        .dispatch('event/createEvent', this.event)
         .then(() => {
           this.$router.push({
             name: 'event-show',
@@ -89,9 +88,7 @@ export default {
           })
           this.event = this.createFreshEvent()
         })
-        .catch(error => {
-          console.log('Error while creating event' + error)
-        })
+        .catch()
     }
   }
 }
