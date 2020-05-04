@@ -38,6 +38,8 @@
 <script>
 import { mapState } from 'vuex'
 import Datepicker from 'vuejs-datepicker'
+import NProgress from 'nprogress'
+
 export default {
   components: {
     Datepicker
@@ -79,6 +81,7 @@ export default {
       }
     },
     createEvent() {
+      NProgress.start()
       this.$store
         .dispatch('event/createEvent', this.event)
         .then(() => {
@@ -88,7 +91,9 @@ export default {
           })
           this.event = this.createFreshEvent()
         })
-        .catch()
+        .catch(() => {
+          NProgress.done()
+        })
     }
   }
 }
