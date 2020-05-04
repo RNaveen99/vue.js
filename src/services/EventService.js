@@ -7,7 +7,9 @@ const apiClient = axios.create({
     'Content-Type': 'application/json'
   }
 })
-const getEvents = () => apiClient.get('/events')
+const getEvents = (perPage, page) =>
+  apiClient.get('/events?_limit=' + perPage + '&_page=' + page)
 const getEvent = id => apiClient.get('/events/' + id)
+const postEvent = event => apiClient.post('/events', event)
 
-export default { getEvents, getEvent }
+export default { getEvents, getEvent, postEvent }
