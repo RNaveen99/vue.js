@@ -2,7 +2,7 @@
   <div>
     <div class="field">
       <label v-if="label">{{ label }}</label>
-      <select :value="value" @change="updateValue" v-bind="$attrs">
+      <select :value="value" @change="updateValue" v-bind="$attrs" v-on="$listeners">
         <option
           v-for="option in options"
           :key="option"
